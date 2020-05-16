@@ -1,15 +1,40 @@
+#!/usr/bin/python env
 
+__autohor__ = 'dposlt'
+__email__ = 'david.poslt@gmail.com'
+__licence__ = 'GPU'
 
-
+import configparser
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-browser = webdriver.Firefox()
-browser.get('https://www.youtube.com')
 
-elemSearch = browser.find_element_by_name('search_query')
-elemSearch.send_keys('selenium')
+#####################################
+#####################################
+##                                 ##
+##   automatic choice for tinder   ##
+##                                 ##
+#####################################
+#####################################
 
-elemSearch.send_keys(Keys.ENTER)
+def readIni():
+    config = configparser.ConfigParser()
+    config.read('settings.ini')
 
-browser.find_element_by_xpath('//*[@id="hover-overlays"]').click()
+    web = config['WEB']['page']
+    user = config['SECURITY']['user']
+    passwd = config['SECURITY']['password']
+    driver = config['DRIVER']['webDriver']
+
+    return web, user, passwd, driver
+
+def tinderPage():
+
+    web,user,passwd, driver = readIni()
+    browser = webdriver.Firefox(executable_path = driver)
+    browser.get(web)
+
+    login = browser.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/div[2]/button')
+    login.click()
+
+tinderPage()
