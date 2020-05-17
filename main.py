@@ -42,29 +42,32 @@ class TinderBot():
 
         time.sleep(4)
 
-        if self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/button').click():
-            time.sleep(1)
+        if self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/div[2]/button').is_displayed():
+            self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/div[2]/button').click()
+
+        elif self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/div[3]/button').is_displayed():
             self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/div[3]/button').click()
 
-        elif len(self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[2]/span/div[2]/button')) > 0:
-            print('2')
-            self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[2]/span/div[2]/button').click()
+        elif self.driver.find_element_by_xpath('html/body/div[2]/div/div/div/div/div[2]/span/div[2]/button').is_displayed():
+            self.driver.find_element_by_xpath('html/body/div[2]/div/div/div/div/div[2]/span/div[2]/button').click()
 
-        else:
-            print('3')
-            self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/div[3]/button').click()
+        elif self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/button').is_displayed():
+            self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/button').click()
 
-            ## switch to login popup ##
-            base_window = self.driver.window_handles[1]
-            self.driver.switch_to_window(base_window)
 
-            email = self.driver.find_element_by_xpath('//*[@id="email"]')
-            email.send_keys(user)
 
-            pwd = self.driver.find_element_by_xpath('//*[@id="pass"]')
-            pwd.send_keys(passwd)
+
+        ## switch to login popup ##
+        base_window = self.driver.window_handles[1]
+        self.driver.switch_to.window(base_window)
+        mail = self.driver.find_element_by_xpath('//*[@id="email"]')
+        email.send_keys(user)
+
+        pwd = self.driver.find_element_by_xpath('//*[@id="pass"]')
+        pwd.send_keys(passwd)
+
 
 
 bot = TinderBot()
-bot.login()
 
+bot.login()
