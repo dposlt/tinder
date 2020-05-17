@@ -17,6 +17,7 @@ from selenium.webdriver.common.keys import Keys
 #####################################
 #####################################
 
+
 def readIni():
     config = configparser.ConfigParser()
     config.read('settings.ini')
@@ -28,33 +29,42 @@ def readIni():
 
     return web, user, passwd, driver
 
-def checkFile():
-    d = readIni()[3]
-    if os.path.isfile(d):
-        return d
+class TinderBot():
 
-def tinderPage():
-
-    web,user,passwd, driver = readIni()
-    browser = webdriver.Firefox(executable_path=checkFile())
-
-    if browser:
-        browser.get(web)
-        time.sleep(5)
-
-        ## login menu via fcb##
-
-        try:
-            browser.find_element_by_css_selector('button.Td\(u\):nth-child(3)').click()
-        except:
-            login = browser.find_element_by_css_selector('div.My\(10px\):nth-child(2) > button:nth-child(1)')
-            login.click()
+    def __init__(self):
+        self.driver = webdriver.Firefox(executable_path=readIni()[3])
 
 
-        ## Log In ##
-        email = browser.find_element_by_css_selector('#email')
-        email.text(user)
-        password = browser.find_element_by_css_selector('#pass')
-        password.text(passwd)
+    def login(self):
+        ## login via facebook ##
+        web, user, passwd, driver = readIni()
+        self.driver.get(web)
 
-tinderPage()
+        time.sleep(4)
+
+        if self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/button').click():
+            time.sleep(1)
+            self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/div[3]/button').click()
+
+        elif len(self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[2]/span/div[2]/button')) > 0:
+            print('2')
+            self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[2]/span/div[2]/button').click()
+
+        else:
+            print('3')
+            self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/div[3]/button').click()
+
+            ## switch to login popup ##
+            base_window = self.driver.window_handles[1]
+            self.driver.switch_to_window(base_window)
+
+            email = self.driver.find_element_by_xpath('//*[@id="email"]')
+            email.send_keys(user)
+
+            pwd = self.driver.find_element_by_xpath('//*[@id="pass"]')
+            pwd.send_keys(passwd)
+
+
+bot = TinderBot()
+bot.login()
+
