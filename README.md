@@ -19,6 +19,6 @@ pip install selenium
 * [bug] stupid bugs ([i18][i19]) 
 
         [i18]: tinder change login menu with same xpath :(
-        [i19]: browser cannot find new peaple
+        [i19]: browser cannot find new people
 
 
