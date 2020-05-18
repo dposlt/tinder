@@ -11,6 +11,7 @@ pip install selenium
 ```
 
 * [done]
+
 -[x] Open browser
 -[x] Choise facebook to login
 -[x] login to tinder
