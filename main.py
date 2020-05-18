@@ -52,7 +52,7 @@ class TinderBot():
             self.driver.find_element_by_xpath('html/body/div[2]/div/div/div/div/div[2]/span/div[2]/button').click()
 
         elif self.driver.find_element_by_css_selector('button.Td\(u\):nth-child(3)').is_displayed():
-            self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/span/button').click()
+            self.driver.find_element_by_css_selector('button.Td\(u\):nth-child(3)').click()
 
 
 
@@ -84,6 +84,7 @@ class TinderBot():
         # allow location and notification #
         if self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[1]/span').is_displayed():
             self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[1]/span').click()
+        time.sleep(4)
         if self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[1]').is_displayed():
             self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[1]').click()
 
