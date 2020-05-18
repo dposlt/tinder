@@ -1,9 +1,14 @@
-## Authomat for tinder
+## Automat for tinder
 
-- dependence
+#### Installation
 
-    -- python3.8 \
--- pip install selenium
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install selenium.
+
+
+```bash
+python3.8
+pip install selenium
+```
 
 * [done]
 -[x] Open browser
