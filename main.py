@@ -88,7 +88,7 @@ class TinderBot():
         if self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[1]').is_displayed():
             self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[1]').click()
 
-bot = TinderBot()
 
-bot.login()
-bot.choise()
+if __name__ == "__main__":
+    TinderBot().login()
+    TinderBot().choise()
